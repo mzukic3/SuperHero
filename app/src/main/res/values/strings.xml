@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Super Hero</string>
+    <string name="menu_item_share">Share</string>
+    <string name="label">Hero Name</string>
+    <string name="search">Search</string>
+    <string name="clear">Clear</string>
+    <string name="welcome_label">Welcome\nFind your super hero!</string>
+    <string name="no_heroes_found_label">No heroes found</string>
+    <string name="error_label">Unexpected error happened, please check your internet connection and try again</string>
+    <string name="retry">Retry</string>
+    <string name="full_name">Full Name:</string>
+    <string name="publisher_name">Publisher Name:</string>
+    <string name="place_of_birth">Place of Birth:</string>
+    <string name="first_appearance">First Appearance:</string>
+    <string name="alter_egos">Alter Egos:</string>
+    <string name="aligment">Aligment</string>
+    <string name="aliases">Aliases</string>
+    <string name="details">Details</string>
+    <string name="enter_superhero_name_label">Please enter your super hero name</string>
+</resources>

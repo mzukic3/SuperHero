@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- To see how these attributes are used, please visit https://material.io/develop/android/theming/color/ -->
+    <style name="Base.Theme.Superhero" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:navigationBarColor">@color/primary_dark</item>
+        <item name="android:displayOptions">disableHome</item>
+    </style>
+
+    <style name="Theme.Superhero" parent="Base.Theme.Superhero"/>
+
+
+    <!-- Add plant button -->
+
+</resources>
