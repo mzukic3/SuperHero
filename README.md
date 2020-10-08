@@ -24,7 +24,7 @@ To use the API, you will need to obtain a free developer API key. See the
 Once you have the key, add this line to the `apikey.properties` file
 
 ```
-API_KEY=<your Unsplash access key>
+API_KEY=<your SuperHero access key>
 ```
 Screenshots
 -----------
