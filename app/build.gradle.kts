@@ -72,6 +72,9 @@ dependencies {
     implementation(Libraries.AndroidLibs.MATERIAL)
     implementation(Libraries.AndroidLibs.ANDROIDX_NAVIGATION_UI)
     implementation(Libraries.AndroidLibs.ANDROIDX_NAVIGATION_FRAGMENT)
+    implementation(Libraries.AndroidLibs.ANDROIDX_RECYCLER_VIEW)
+    implementation(Libraries.AndroidLibs.PALETTE)
+    implementation(Libraries.AndroidLibs.LEGACY)
 
     //Glide
     implementation(Libraries.Utility.GLIDE)
@@ -79,7 +82,7 @@ dependencies {
 
     //Concurrency
     implementation(Libraries.Concurrency.COROUTINES)
-    implementation(Libraries.Concurrency.COROUTINES_ANDROID)
+
 
     //Networking
     implementation(Libraries.Networking.GSON)
@@ -94,19 +97,28 @@ dependencies {
     kapt(Libraries.DI.HILT_COMPILER)
     implementation(Libraries.DI.HILT_VIEWMODEL)
     kapt(Libraries.DI.HILT_VIEWMODEL_COMPILER)
+    kaptAndroidTest(Libraries.DI.HILT_COMPILER)
 
     //Util
     implementation(Libraries.Utility.TIMBER)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    implementation("androidx.palette:palette-ktx:1.0.0")
 
     // Tests dep
     testImplementation(TestingLib.JUNIT)
+    testImplementation(AndroidTestingLib.COROUTINES_TEST)
+    testImplementation(Libraries.Concurrency.COROUTINES_ANDROID)
+    testImplementation ("androidx.arch.core:core-testing:2.1.0")
+    testImplementation ("com.squareup.okhttp3:mockwebserver:4.9.0")
 
     // Android test dep
-    androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)
+    androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)
-    androidTestImplementation(AndroidTestingLib.ESPRESSO_CORE)
+    androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RUNNER)
+    androidTestImplementation(AndroidTestingLib.ANDROIDX_JUNIT_TEST_EXT)
+    androidTestImplementation(AndroidTestingLib.TRUTH)
+    androidTestImplementation(AndroidTestingLib.ANDROIDX_TRUTH_EXT)
+    androidTestImplementation(AndroidTestingLib.MOCKITO_INLINE)
+    androidTestImplementation(AndroidTestingLib.MOCKITO_KOTLIN)
+    androidTestImplementation(AndroidTestingLib.ROBOLECTRIC)
+    androidTestImplementation(Libraries.DI.HILT_TESTING)
+
 }

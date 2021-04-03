@@ -5,8 +5,8 @@ object Sdk {
 }
 
 object Versions {
-    const val ANDROIDX_TEST_EXT = "1.1.1"
-    const val ANDROIDX_TEST = "1.2.0"
+    const val ANDROIDX_JUNIT_TEST_EXT = "1.1.2"
+    const val ANDROIDX_TEST = "1.3.0"
     const val APPCOMPAT = "1.1.0"
     const val CONSTRAINT_LAYOUT = "1.1.3"
     const val RECYCLER_VIEW = "1.1.0"
@@ -18,20 +18,24 @@ object Versions {
     const val GSON = "2.8.5"
     const val GSNON_CONVERTER = "2.6.0"
     const val MATERIAL = "1.1.0"
+    const val PALETTE = "1.0.0"
     const val NAVIGATION = "2.3.0"
     const val LIFECYCLE = "2.2.0"
     const val TIMBER = "4.7.1"
     const val GLIDE = "4.11.0"
-    const val COROUTINES = "1.3.8"
     const val HILT = "2.28-alpha"
-
-
+    const val COROUTINES = "1.4.3"
+    const val LEGACY = "1.0.0"
+    const val TRUTH = "1.0.1"
+    const val ROBOLECTRIC = "4.5.1"
+    const val MOCKITO_KOTLIN = "2.2.0"
+    const val MOCKITO_INLINE = "3.5.13"
 }
 
 object BuildPluginsVersion {
     const val AGP = "4.0.0"
     const val DETEKT = "1.10.0"
-    const val KOTLIN = "1.3.72"
+    const val KOTLIN = "1.4.32"
     const val KTLINT = "9.2.1"
     const val VERSIONS_PLUGIN = "0.28.0"
 }
@@ -54,6 +58,9 @@ object Libraries {
         const val ANDROIDX_NAVIGATION_UI =
             "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
         const val MATERIAL = "com.google.android.material:material:${Versions.MATERIAL}"
+
+        const val PALETTE = "androidx.palette:palette-ktx:${Versions.PALETTE}"
+        const val LEGACY = "androidx.legacy:legacy-support-v4:${Versions.LEGACY}"
     }
 
     object Networking {
@@ -80,6 +87,7 @@ object Libraries {
     object DI {
         const val HILT = "com.google.dagger:hilt-android:${Versions.HILT}"
         const val HILT_COMPILER = "com.google.dagger:hilt-android-compiler:${Versions.HILT}"
+        const val HILT_TESTING = "com.google.dagger:hilt-android-testing:${Versions.HILT}"
         const val HILT_VIEWMODEL = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
         const val HILT_VIEWMODEL_COMPILER = "androidx.hilt:hilt-compiler:1.0.0-alpha01"
     }
@@ -88,11 +96,18 @@ object Libraries {
 
 object TestingLib {
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
+    const val KOTLIN_COROUTINES_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${BuildPluginsVersion.KOTLIN}"
 }
 
 object AndroidTestingLib {
+    const val ANDROIDX_TEST_CORE = "androidx.test:core:${Versions.ANDROIDX_TEST}"
     const val ANDROIDX_TEST_RULES = "androidx.test:rules:${Versions.ANDROIDX_TEST}"
     const val ANDROIDX_TEST_RUNNER = "androidx.test:runner:${Versions.ANDROIDX_TEST}"
-    const val ANDROIDX_TEST_EXT_JUNIT = "androidx.test.ext:junit:${Versions.ANDROIDX_TEST_EXT}"
-    const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
+    const val ANDROIDX_JUNIT_TEST_EXT = "androidx.test.ext:junit:${Versions.ANDROIDX_JUNIT_TEST_EXT}"
+    const val ANDROIDX_TRUTH_EXT = "androidx.test.ext:truth:${Versions.ANDROIDX_TEST}"
+    const val TRUTH = "com.google.truth:truth:${Versions.TRUTH}"
+    const val ROBOLECTRIC = "org.robolectric:robolectric:${Versions.ROBOLECTRIC}"
+    const val MOCKITO_INLINE = "org.mockito:mockito-inline:${Versions.MOCKITO_INLINE}"
+    const val MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.MOCKITO_KOTLIN}"
+    const val COROUTINES_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}"
 }
