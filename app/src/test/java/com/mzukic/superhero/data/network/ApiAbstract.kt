@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.mzukic.superhero.network
+package com.mzukic.superhero.data.network
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.test.platform.app.InstrumentationRegistry
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okio.buffer
@@ -29,6 +30,7 @@ import org.junit.runners.JUnit4
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
+import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 
 @RunWith(JUnit4::class)
@@ -67,6 +69,21 @@ abstract class ApiAbstract<T> {
       mockResponse.addHeader(key, value)
     }
     mockWebServer.enqueue(mockResponse.setBody(source.readString(StandardCharsets.UTF_8)))
+  }
+
+  private fun readStringFromFile(fileName: String): String {
+    try {
+      val inputStream = (InstrumentationRegistry.getInstrumentation().targetContext
+        .applicationContext).assets.open(fileName)
+      val builder = StringBuilder()
+      val reader = InputStreamReader(inputStream, "UTF-8")
+      reader.readLines().forEach {
+        builder.append(it)
+      }
+      return builder.toString()
+    } catch (e: IOException) {
+      throw e
+    }
   }
 
   fun createService(clazz: Class<T>): T {

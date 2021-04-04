@@ -33,7 +33,7 @@ subprojects {
     }
 
     ktlint {
-        debug.set(false)
+        debug.set(true)
         version.set(Versions.KTLINT)
         verbose.set(true)
         android.set(false)
@@ -42,7 +42,6 @@ subprojects {
         enableExperimentalRules.set(true)
         filter {
             exclude("**/generated/**")
-            include("**/kotlin/**")
         }
     }
 

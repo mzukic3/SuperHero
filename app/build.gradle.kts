@@ -11,6 +11,7 @@ plugins {
 // Retrieve key for api
 fun getApiKey(): String {
     val items = HashMap<String, String>()
+
     val f = File("apikey.properties")
 
     f.forEachLine {
@@ -106,6 +107,15 @@ dependencies {
     testImplementation(TestingLib.JUNIT)
     testImplementation(AndroidTestingLib.COROUTINES_TEST)
     testImplementation(Libraries.Concurrency.COROUTINES_ANDROID)
+    testImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE)
+    testImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)
+    testImplementation(AndroidTestingLib.ANDROIDX_TEST_RUNNER)
+    testImplementation(AndroidTestingLib.ANDROIDX_JUNIT_TEST_EXT)
+    testImplementation(AndroidTestingLib.TRUTH)
+    testImplementation(AndroidTestingLib.ANDROIDX_TRUTH_EXT)
+    testImplementation(AndroidTestingLib.MOCKITO_INLINE)
+    testImplementation(AndroidTestingLib.MOCKITO_KOTLIN)
+    testImplementation(AndroidTestingLib.ROBOLECTRIC)
     testImplementation ("androidx.arch.core:core-testing:2.1.0")
     testImplementation ("com.squareup.okhttp3:mockwebserver:4.9.0")
 

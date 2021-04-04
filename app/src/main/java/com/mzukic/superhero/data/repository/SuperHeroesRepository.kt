@@ -5,6 +5,7 @@ import com.mzukic.superhero.data.network.api.SuperHeroApiService
 import com.mzukic.superhero.exception.EndpointRequestFailedException
 import com.mzukic.superhero.exception.NoConnectionException
 import com.mzukic.superhero.util.Either
+import retrofit2.HttpException
 import java.io.IOException
 import java.lang.Exception
 import javax.inject.Inject
@@ -25,6 +26,7 @@ class SuperHeroesRepository @Inject constructor(private val apiService: SuperHer
         } catch (e: Exception) {
             return when (e) {
                 is IOException -> Either.Exception(NoConnectionException())
+                is HttpException -> Either.Exception(EndpointRequestFailedException())
                 else -> {
                     Either.Exception(e)
                 }
