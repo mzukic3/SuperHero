@@ -25,12 +25,11 @@ class SuperHeroServiceTest : ApiAbstract<SuperHeroApiService>() {
 
     @Throws(IOException::class)
     @Test
-    fun fetchPokemonInfoFromNetworkTest() = runBlocking {
+    fun fetchSuperHeroesFromNetworkTest() = runBlocking {
         enqueueResponse("/SearchBatmanResponse.json")
         val response = service.searchSuperHeroes("batman")
         val responseBody = response.body()
         mockWebServer.takeRequest()
-
         assertThat(responseBody).isNotNull()
         assertThat(responseBody?.response).isEqualTo("success")
         assertThat(responseBody?.resultsFor).isEqualTo("batman")

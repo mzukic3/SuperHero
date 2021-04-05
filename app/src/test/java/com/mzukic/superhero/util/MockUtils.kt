@@ -1,5 +1,6 @@
 package com.mzukic.superhero.util
 
+import com.mzukic.superhero.data.model.SuperHero
 import com.mzukic.superhero.data.network.response.Biography
 import com.mzukic.superhero.data.network.response.Image
 import com.mzukic.superhero.data.network.response.SearchResponse
@@ -29,4 +30,26 @@ object MockUtils {
             )
         )
     )
+
+    fun mockSuperHeroes(): List<SuperHero> {
+        return listOf<SuperHero>(
+            mockSuperHero("1", "batman"),
+            mockSuperHero("2", "batman"),
+            mockSuperHero("3", "batman")
+        )
+    }
+
+    fun mockSuperHero(id: String, name: String) =
+        SuperHero(
+            id,
+            name,
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            listOf()
+        )
 }

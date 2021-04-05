@@ -5,20 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView.OnEditorActionListener
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mzukic.superhero.R
 import com.mzukic.superhero.data.model.SuperHero
 import com.mzukic.superhero.databinding.FragmentSearchBinding
 import com.mzukic.superhero.ui.base.BaseFragment
-import com.mzukic.superhero.util.Either
-import com.mzukic.superhero.util.LoadingState
 import com.mzukic.superhero.util.hide
 import com.mzukic.superhero.util.show
+
 
 class SearchFragment : BaseFragment() {
 
@@ -57,20 +57,15 @@ class SearchFragment : BaseFragment() {
                 hideKeyboard()
             }
             buttonSubmit.setOnClickListener {
-                val query = editTextSearch.text.toString()
-                if (query.isEmpty()) {
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.enter_superhero_name_label),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    binding.recyclerView.scrollToPosition(0)
-                    viewModel.searchHeroes(query)
-                    editTextSearch.clearFocus()
-                    hideKeyboard()
-                }
+                performSearch()
             }
+            editTextSearch.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    performSearch()
+                    return@OnEditorActionListener true
+                }
+                false
+            })
             buttonRetry.setOnClickListener {
                 val text = editTextSearch.text.toString()
                 if (text.isEmpty()) {
@@ -86,35 +81,45 @@ class SearchFragment : BaseFragment() {
         }
         showEmptyStateScreen()
 
-        // Observe changes
-        viewModel.observeLoadingState().observe(
-            viewLifecycleOwner,
-            Observer {
-                when (it) {
-                    LoadingState.LOADING -> showLoadingScreen()
-                    else -> hideLoadingScreen()
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            if (it) {
+                showLoadingScreen()
+            } else {
+                hideLoadingScreen()
+            }
+        }
+
+        viewModel.searchSuperHeroResult.observe(viewLifecycleOwner) {
+            when (it) {
+                SearchViewModel.SearchSuperHeroResult.EndpointFailedError,
+                SearchViewModel.SearchSuperHeroResult.NoConnectionError -> {
+                    showErrorScreen()
+                }
+                SearchViewModel.SearchSuperHeroResult.NoHeroesFound -> {
+                    showNoResultScreen()
+                }
+                is SearchViewModel.SearchSuperHeroResult.Success -> {
+                    showResultScreen()
+                    superHeroAdapter.submitList(it.heroes)
                 }
             }
-        )
-        viewModel.observeSuperHeroesResults().observe(
-            viewLifecycleOwner,
-            Observer {
-                when (it) {
-                    is Either.Success -> {
-                        val result = it.result
-                        if (result.isEmpty()) {
-                            showNoResultScreen()
-                        } else {
-                            showResultScreen()
-                            superHeroAdapter.submitList(result)
-                        }
-                    }
-                    is Either.Exception -> {
-                        showErrorScreen()
-                    }
-                }
-            }
-        )
+        }
+    }
+
+    private fun FragmentSearchBinding.performSearch() {
+        val query = editTextSearch.text.toString()
+        if (query.isEmpty()) {
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.enter_superhero_name_label),
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            binding.recyclerView.scrollToPosition(0)
+            viewModel.searchHeroes(query)
+            editTextSearch.clearFocus()
+            hideKeyboard()
+        }
     }
 
     override fun onDestroyView() {

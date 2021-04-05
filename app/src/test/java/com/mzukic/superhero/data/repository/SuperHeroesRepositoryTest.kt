@@ -32,7 +32,7 @@ class SuperHeroesRepositoryTest {
     }
 
     @Test
-    fun test(): Unit = runBlocking {
+    fun `Test search super heroes returns success`(): Unit = runBlocking {
         val mockHeroResponse = MockUtils.mockSearchResponse()
         whenever(apiService.searchSuperHeroes(HERO_NAME)).thenReturn(
             Response.success(
@@ -42,7 +42,7 @@ class SuperHeroesRepositoryTest {
 
         repository.searchHeroes(HERO_NAME).let {
             assertThat(it.isSuccess).isTrue()
-            val result = (it as Either.Success).result
+            val result = (it as Either.Success).data
             assertThat(result.size).isEqualTo(mockHeroResponse.superHeroesResponse?.size)
             result.first().let { superHero ->
                 assertThat(superHero.id).isEqualTo(mockHeroResponse.superHeroesResponse?.first()?.id)
