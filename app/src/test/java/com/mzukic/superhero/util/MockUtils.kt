@@ -1,6 +1,5 @@
 package com.mzukic.superhero.util
 
-import com.mzukic.superhero.data.model.SuperHero
 import com.mzukic.superhero.data.network.response.Biography
 import com.mzukic.superhero.data.network.response.Image
 import com.mzukic.superhero.data.network.response.SearchResponse

@@ -10,7 +10,7 @@ import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
 
-class SuperHeroServiceTest: ApiAbstract<SuperHeroApiService>() {
+class SuperHeroServiceTest : ApiAbstract<SuperHeroApiService>() {
 
     private lateinit var service: SuperHeroApiService
 

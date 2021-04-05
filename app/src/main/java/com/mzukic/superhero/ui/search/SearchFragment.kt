@@ -15,7 +15,10 @@ import com.mzukic.superhero.R
 import com.mzukic.superhero.data.model.SuperHero
 import com.mzukic.superhero.databinding.FragmentSearchBinding
 import com.mzukic.superhero.ui.base.BaseFragment
-import com.mzukic.superhero.util.*
+import com.mzukic.superhero.util.Either
+import com.mzukic.superhero.util.LoadingState
+import com.mzukic.superhero.util.hide
+import com.mzukic.superhero.util.show
 
 class SearchFragment : BaseFragment() {
 
@@ -90,7 +93,6 @@ class SearchFragment : BaseFragment() {
                 when (it) {
                     LoadingState.LOADING -> showLoadingScreen()
                     else -> hideLoadingScreen()
-
                 }
             }
         )
@@ -118,7 +120,6 @@ class SearchFragment : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-
     }
 
     private fun showErrorScreen() {
@@ -182,7 +183,6 @@ class SearchFragment : BaseFragment() {
                 superHero
             )
         )
-
     }
 
     /**

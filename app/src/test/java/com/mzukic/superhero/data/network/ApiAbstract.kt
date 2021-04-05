@@ -36,61 +36,63 @@ import java.nio.charset.StandardCharsets
 @RunWith(JUnit4::class)
 abstract class ApiAbstract<T> {
 
-  @Rule
-  @JvmField
-  val instantExecutorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
+    @Rule
+    @JvmField
+    val instantExecutorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
 
-  lateinit var mockWebServer: MockWebServer
+    lateinit var mockWebServer: MockWebServer
 
-  @Throws(IOException::class)
-  @Before
-  fun mockServer() {
-    mockWebServer = MockWebServer()
-    mockWebServer.start()
-  }
-
-  @Throws(IOException::class)
-  @After
-  fun stopServer() {
-    mockWebServer.shutdown()
-  }
-
-  @Throws(IOException::class)
-  fun enqueueResponse(fileName: String) {
-    enqueueResponse(fileName, emptyMap())
-  }
-
-  @Throws(IOException::class)
-  private fun enqueueResponse(fileName: String, headers: Map<String, String>) {
-    val inputStream = javaClass.classLoader!!.getResourceAsStream("api-response/$fileName")
-    val source = inputStream.source().buffer()
-    val mockResponse = MockResponse()
-    for ((key, value) in headers) {
-      mockResponse.addHeader(key, value)
+    @Throws(IOException::class)
+    @Before
+    fun mockServer() {
+        mockWebServer = MockWebServer()
+        mockWebServer.start()
     }
-    mockWebServer.enqueue(mockResponse.setBody(source.readString(StandardCharsets.UTF_8)))
-  }
 
-  private fun readStringFromFile(fileName: String): String {
-    try {
-      val inputStream = (InstrumentationRegistry.getInstrumentation().targetContext
-        .applicationContext).assets.open(fileName)
-      val builder = StringBuilder()
-      val reader = InputStreamReader(inputStream, "UTF-8")
-      reader.readLines().forEach {
-        builder.append(it)
-      }
-      return builder.toString()
-    } catch (e: IOException) {
-      throw e
+    @Throws(IOException::class)
+    @After
+    fun stopServer() {
+        mockWebServer.shutdown()
     }
-  }
 
-  fun createService(clazz: Class<T>): T {
-    return Retrofit.Builder()
-      .baseUrl(mockWebServer.url("/"))
-      .addConverterFactory(GsonConverterFactory.create())
-      .build()
-      .create(clazz)
-  }
+    @Throws(IOException::class)
+    fun enqueueResponse(fileName: String) {
+        enqueueResponse(fileName, emptyMap())
+    }
+
+    @Throws(IOException::class)
+    private fun enqueueResponse(fileName: String, headers: Map<String, String>) {
+        val inputStream = javaClass.classLoader!!.getResourceAsStream("api-response/$fileName")
+        val source = inputStream.source().buffer()
+        val mockResponse = MockResponse()
+        for ((key, value) in headers) {
+            mockResponse.addHeader(key, value)
+        }
+        mockWebServer.enqueue(mockResponse.setBody(source.readString(StandardCharsets.UTF_8)))
+    }
+
+    private fun readStringFromFile(fileName: String): String {
+        try {
+            val inputStream = (
+                InstrumentationRegistry.getInstrumentation().targetContext
+                    .applicationContext
+                ).assets.open(fileName)
+            val builder = StringBuilder()
+            val reader = InputStreamReader(inputStream, "UTF-8")
+            reader.readLines().forEach {
+                builder.append(it)
+            }
+            return builder.toString()
+        } catch (e: IOException) {
+            throw e
+        }
+    }
+
+    fun createService(clazz: Class<T>): T {
+        return Retrofit.Builder()
+            .baseUrl(mockWebServer.url("/"))
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(clazz)
+    }
 }

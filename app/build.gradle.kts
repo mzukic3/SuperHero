@@ -11,13 +11,10 @@ plugins {
 // Retrieve key for api
 fun getApiKey(): String {
     val items = HashMap<String, String>()
-
     val f = File("apikey.properties")
-
     f.forEachLine {
         items[it.split("=")[0]] = it.split("=")[1]
     }
-
     return items["API_KEY"]!!
 }
 
@@ -48,7 +45,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-
     }
     buildFeatures {
         viewBinding = true
@@ -63,7 +59,7 @@ android {
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
 
-    //Android libs
+    // Android libs
     implementation(Libraries.AndroidLibs.ANDROIDX_APPCOMPAT)
     implementation(Libraries.AndroidLibs.ANDROIDX_CONSTRAINT_LAYOUT)
     implementation(Libraries.AndroidLibs.ANDROIDX_CORE_KTX)
@@ -77,15 +73,14 @@ dependencies {
     implementation(Libraries.AndroidLibs.PALETTE)
     implementation(Libraries.AndroidLibs.LEGACY)
 
-    //Glide
+    // Glide
     implementation(Libraries.Utility.GLIDE)
     kapt(Libraries.Utility.GLIDE_COMPILER)
 
-    //Concurrency
+    // Concurrency
     implementation(Libraries.Concurrency.COROUTINES)
 
-
-    //Networking
+    // Networking
     implementation(Libraries.Networking.GSON)
     implementation(Libraries.Networking.GSON_CONVERTER)
     implementation(Libraries.Networking.RETROFIT)
@@ -93,14 +88,14 @@ dependencies {
     implementation(Libraries.Networking.OKHTTP_LOGGING_INTERCEPTOR)
     implementation(Libraries.Networking.OKHTTP_URLCONNECTION)
 
-    //Hilt
+    // Hilt
     implementation(Libraries.DI.HILT)
     kapt(Libraries.DI.HILT_COMPILER)
     implementation(Libraries.DI.HILT_VIEWMODEL)
     kapt(Libraries.DI.HILT_VIEWMODEL_COMPILER)
     kaptAndroidTest(Libraries.DI.HILT_COMPILER)
 
-    //Util
+    // Util
     implementation(Libraries.Utility.TIMBER)
 
     // Tests dep
@@ -116,8 +111,8 @@ dependencies {
     testImplementation(AndroidTestingLib.MOCKITO_INLINE)
     testImplementation(AndroidTestingLib.MOCKITO_KOTLIN)
     testImplementation(AndroidTestingLib.ROBOLECTRIC)
-    testImplementation ("androidx.arch.core:core-testing:2.1.0")
-    testImplementation ("com.squareup.okhttp3:mockwebserver:4.9.0")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.0")
 
     // Android test dep
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE)
@@ -130,5 +125,4 @@ dependencies {
     androidTestImplementation(AndroidTestingLib.MOCKITO_KOTLIN)
     androidTestImplementation(AndroidTestingLib.ROBOLECTRIC)
     androidTestImplementation(Libraries.DI.HILT_TESTING)
-
 }

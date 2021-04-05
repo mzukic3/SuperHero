@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import com.mzukic.superhero.R
 import com.mzukic.superhero.databinding.FragmentDetailBinding
-import com.mzukic.superhero.databinding.FragmentSearchBinding
 import com.mzukic.superhero.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_detail.*
 
@@ -60,5 +59,4 @@ class DetailFragment : BaseFragment() {
             alterEgosTextView.text = superHero.alterEgos
         }
     }
-
 }

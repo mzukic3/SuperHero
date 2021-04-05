@@ -2,18 +2,20 @@ package com.mzukic.superhero.data.repository
 
 import com.google.common.truth.Truth.assertThat
 import com.mzukic.superhero.data.network.api.SuperHeroApiService
-import com.mzukic.superhero.data.network.response.SearchResponse
 import com.mzukic.superhero.util.Either
 import com.mzukic.superhero.util.MainCoroutineRule
 import com.mzukic.superhero.util.MockUtils
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.atLeastOnce
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
+import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
-
 
 @ExperimentalCoroutinesApi
 class SuperHeroesRepositoryTest {

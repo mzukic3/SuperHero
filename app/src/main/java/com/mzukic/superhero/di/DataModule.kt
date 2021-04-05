@@ -2,7 +2,6 @@ package com.mzukic.superhero.di
 
 import com.mzukic.superhero.BuildConfig
 import com.mzukic.superhero.data.network.api.SuperHeroApiService
-import com.mzukic.superhero.data.repository.SuperHeroesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,5 +40,4 @@ object DataModule {
             .build()
             .create(SuperHeroApiService::class.java)
     }
-
 }
