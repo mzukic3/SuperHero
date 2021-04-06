@@ -71,23 +71,6 @@ abstract class ApiAbstract<T> {
         mockWebServer.enqueue(mockResponse.setBody(source.readString(StandardCharsets.UTF_8)))
     }
 
-    private fun readStringFromFile(fileName: String): String {
-        try {
-            val inputStream = (
-                InstrumentationRegistry.getInstrumentation().targetContext
-                    .applicationContext
-                ).assets.open(fileName)
-            val builder = StringBuilder()
-            val reader = InputStreamReader(inputStream, "UTF-8")
-            reader.readLines().forEach {
-                builder.append(it)
-            }
-            return builder.toString()
-        } catch (e: IOException) {
-            throw e
-        }
-    }
-
     fun createService(clazz: Class<T>): T {
         return Retrofit.Builder()
             .baseUrl(mockWebServer.url("/"))

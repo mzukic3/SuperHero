@@ -27,7 +27,7 @@ android {
         applicationId = AppCoordinates.APP_ID
         versionCode = AppCoordinates.APP_VERSION_CODE
         versionName = AppCoordinates.APP_VERSION_NAME
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.mzukic.superhero.HiltTestRunner"
         buildConfigField("String", "API_KEY", getApiKey())
     }
     compileOptions {
@@ -91,8 +91,6 @@ dependencies {
     // Hilt
     implementation(Libraries.DI.HILT)
     kapt(Libraries.DI.HILT_COMPILER)
-    implementation(Libraries.DI.HILT_VIEWMODEL)
-    kapt(Libraries.DI.HILT_VIEWMODEL_COMPILER)
     kaptAndroidTest(Libraries.DI.HILT_COMPILER)
 
     // Util
@@ -110,7 +108,6 @@ dependencies {
     testImplementation(AndroidTestingLib.ANDROIDX_TRUTH_EXT)
     testImplementation(AndroidTestingLib.MOCKITO_INLINE)
     testImplementation(AndroidTestingLib.MOCKITO_KOTLIN)
-    testImplementation(AndroidTestingLib.ROBOLECTRIC)
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.0")
 
@@ -118,11 +115,14 @@ dependencies {
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RUNNER)
+    androidTestImplementation(AndroidTestingLib.ESPRESSO_CORE)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_JUNIT_TEST_EXT)
     androidTestImplementation(AndroidTestingLib.TRUTH)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TRUTH_EXT)
     androidTestImplementation(AndroidTestingLib.MOCKITO_INLINE)
     androidTestImplementation(AndroidTestingLib.MOCKITO_KOTLIN)
-    androidTestImplementation(AndroidTestingLib.ROBOLECTRIC)
     androidTestImplementation(Libraries.DI.HILT_TESTING)
+    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.9.0")
+    androidTestImplementation("com.jakewharton.espresso:okhttp3-idling-resource:1.0.0")
+
 }

@@ -1,6 +1,5 @@
 package com.mzukic.superhero.ui.search
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,9 +8,12 @@ import com.mzukic.superhero.data.model.SuperHero
 import com.mzukic.superhero.data.repository.SuperHeroesRepository
 import com.mzukic.superhero.exception.NoConnectionException
 import com.mzukic.superhero.util.Either
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel @ViewModelInject
+@HiltViewModel
+class SearchViewModel @Inject
 constructor(
     private val superHeroesRepository: SuperHeroesRepository,
 ) : ViewModel() {

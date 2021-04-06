@@ -23,7 +23,7 @@ object Versions {
     const val LIFECYCLE = "2.2.0"
     const val TIMBER = "4.7.1"
     const val GLIDE = "4.11.0"
-    const val HILT = "2.28-alpha"
+    const val HILT = "2.33-beta"
     const val COROUTINES = "1.4.3"
     const val LEGACY = "1.0.0"
     const val TRUTH = "1.0.1"
@@ -88,8 +88,6 @@ object Libraries {
         const val HILT = "com.google.dagger:hilt-android:${Versions.HILT}"
         const val HILT_COMPILER = "com.google.dagger:hilt-android-compiler:${Versions.HILT}"
         const val HILT_TESTING = "com.google.dagger:hilt-android-testing:${Versions.HILT}"
-        const val HILT_VIEWMODEL = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
-        const val HILT_VIEWMODEL_COMPILER = "androidx.hilt:hilt-compiler:1.0.0-alpha01"
     }
 
 }
@@ -103,6 +101,7 @@ object AndroidTestingLib {
     const val ANDROIDX_TEST_CORE = "androidx.test:core:${Versions.ANDROIDX_TEST}"
     const val ANDROIDX_TEST_RULES = "androidx.test:rules:${Versions.ANDROIDX_TEST}"
     const val ANDROIDX_TEST_RUNNER = "androidx.test:runner:${Versions.ANDROIDX_TEST}"
+    const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
     const val ANDROIDX_JUNIT_TEST_EXT = "androidx.test.ext:junit:${Versions.ANDROIDX_JUNIT_TEST_EXT}"
     const val ANDROIDX_TRUTH_EXT = "androidx.test.ext:truth:${Versions.ANDROIDX_TEST}"
     const val TRUTH = "com.google.truth:truth:${Versions.TRUTH}"
