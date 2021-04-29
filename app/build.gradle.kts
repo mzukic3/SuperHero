@@ -12,11 +12,9 @@ plugins {
 fun getApiKey(): String {
     val items = HashMap<String, String>()
     val f = File("apikey.properties")
-
     f.forEachLine {
         items[it.split("=")[0]] = it.split("=")[1]
     }
-
     return items["API_KEY"]!!
 }
 
@@ -29,7 +27,7 @@ android {
         applicationId = AppCoordinates.APP_ID
         versionCode = AppCoordinates.APP_VERSION_CODE
         versionName = AppCoordinates.APP_VERSION_NAME
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.mzukic.superhero.HiltTestRunner"
         buildConfigField("String", "API_KEY", getApiKey())
     }
     compileOptions {
@@ -47,7 +45,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-
     }
     buildFeatures {
         viewBinding = true
@@ -62,7 +59,7 @@ android {
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
 
-    //Android libs
+    // Android libs
     implementation(Libraries.AndroidLibs.ANDROIDX_APPCOMPAT)
     implementation(Libraries.AndroidLibs.ANDROIDX_CONSTRAINT_LAYOUT)
     implementation(Libraries.AndroidLibs.ANDROIDX_CORE_KTX)
@@ -72,16 +69,18 @@ dependencies {
     implementation(Libraries.AndroidLibs.MATERIAL)
     implementation(Libraries.AndroidLibs.ANDROIDX_NAVIGATION_UI)
     implementation(Libraries.AndroidLibs.ANDROIDX_NAVIGATION_FRAGMENT)
+    implementation(Libraries.AndroidLibs.ANDROIDX_RECYCLER_VIEW)
+    implementation(Libraries.AndroidLibs.PALETTE)
+    implementation(Libraries.AndroidLibs.LEGACY)
 
-    //Glide
+    // Glide
     implementation(Libraries.Utility.GLIDE)
     kapt(Libraries.Utility.GLIDE_COMPILER)
 
-    //Concurrency
+    // Concurrency
     implementation(Libraries.Concurrency.COROUTINES)
-    implementation(Libraries.Concurrency.COROUTINES_ANDROID)
 
-    //Networking
+    // Networking
     implementation(Libraries.Networking.GSON)
     implementation(Libraries.Networking.GSON_CONVERTER)
     implementation(Libraries.Networking.RETROFIT)
@@ -89,24 +88,41 @@ dependencies {
     implementation(Libraries.Networking.OKHTTP_LOGGING_INTERCEPTOR)
     implementation(Libraries.Networking.OKHTTP_URLCONNECTION)
 
-    //Hilt
+    // Hilt
     implementation(Libraries.DI.HILT)
     kapt(Libraries.DI.HILT_COMPILER)
-    implementation(Libraries.DI.HILT_VIEWMODEL)
-    kapt(Libraries.DI.HILT_VIEWMODEL_COMPILER)
+    kaptAndroidTest(Libraries.DI.HILT_COMPILER)
 
-    //Util
+    // Util
     implementation(Libraries.Utility.TIMBER)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    implementation("androidx.palette:palette-ktx:1.0.0")
 
     // Tests dep
     testImplementation(TestingLib.JUNIT)
+    testImplementation(AndroidTestingLib.COROUTINES_TEST)
+    testImplementation(Libraries.Concurrency.COROUTINES_ANDROID)
+    testImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE)
+    testImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)
+    testImplementation(AndroidTestingLib.ANDROIDX_TEST_RUNNER)
+    testImplementation(AndroidTestingLib.ANDROIDX_JUNIT_TEST_EXT)
+    testImplementation(AndroidTestingLib.TRUTH)
+    testImplementation(AndroidTestingLib.ANDROIDX_TRUTH_EXT)
+    testImplementation(AndroidTestingLib.MOCKITO_INLINE)
+    testImplementation(AndroidTestingLib.MOCKITO_KOTLIN)
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.0")
 
     // Android test dep
-    androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_EXT_JUNIT)
+    androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_CORE)
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RULES)
+    androidTestImplementation(AndroidTestingLib.ANDROIDX_TEST_RUNNER)
     androidTestImplementation(AndroidTestingLib.ESPRESSO_CORE)
+    androidTestImplementation(AndroidTestingLib.ANDROIDX_JUNIT_TEST_EXT)
+    androidTestImplementation(AndroidTestingLib.TRUTH)
+    androidTestImplementation(AndroidTestingLib.ANDROIDX_TRUTH_EXT)
+    androidTestImplementation(AndroidTestingLib.MOCKITO_INLINE)
+    androidTestImplementation(AndroidTestingLib.MOCKITO_KOTLIN)
+    androidTestImplementation(Libraries.DI.HILT_TESTING)
+    androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.9.0")
+    androidTestImplementation("com.jakewharton.espresso:okhttp3-idling-resource:1.0.0")
+
 }

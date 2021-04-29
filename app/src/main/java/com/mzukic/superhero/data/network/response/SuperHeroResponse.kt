@@ -32,6 +32,7 @@ data class SuperHeroResponse(
             biography?.firstAppearance ?: "Unknown",
             biography?.alterEgos ?: "Unknown",
             biography?.alignment ?: "Unknown",
-            biography?.aliases ?: listOf())
+            biography?.aliases ?: listOf()
+        )
     }
 }

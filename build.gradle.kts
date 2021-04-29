@@ -13,7 +13,7 @@ buildscript {
 
     dependencies {
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.NAVIGATION}")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.28-alpha")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT}")
     }
 }
 
@@ -33,7 +33,7 @@ subprojects {
     }
 
     ktlint {
-        debug.set(false)
+        debug.set(true)
         version.set(Versions.KTLINT)
         verbose.set(true)
         android.set(false)
@@ -42,7 +42,6 @@ subprojects {
         enableExperimentalRules.set(true)
         filter {
             exclude("**/generated/**")
-            include("**/kotlin/**")
         }
     }
 

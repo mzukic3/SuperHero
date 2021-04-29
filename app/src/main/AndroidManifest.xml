@@ -12,8 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name="com.mzukic.superhero.App"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Superhero"
-        tools:ignore="AllowBackup">
+        tools:ignore="AllowBackup"
+        tools:targetApi="m">
         <activity android:name="com.mzukic.superhero.ui.SuperHeroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

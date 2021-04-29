@@ -31,8 +31,8 @@ sealed class Either<out L, out R> {
     }
 
     /** * Represents the success side of [Either] class. */
-    data class Success<out R>(val result: R) : Either<Nothing, R>() {
-        val value: R get() = result
+    data class Success<out R>(val data: R) : Either<Nothing, R>() {
+        val value: R get() = data
     }
 
     val isException get() = this is Exception<L>
@@ -44,6 +44,6 @@ sealed class Either<out L, out R> {
     fun either(fnL: (L) -> Any, fnR: (R) -> Any): Any =
         when (this) {
             is Exception -> fnL(exception)
-            is Success -> fnR(result)
+            is Success -> fnR(data)
         }
 }
