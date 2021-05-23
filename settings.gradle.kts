@@ -22,3 +22,4 @@ rootProject.name = ("Super Hero")
 include(
     "app"
 )
+include(":shared")
