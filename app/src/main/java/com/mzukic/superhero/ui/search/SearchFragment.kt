@@ -18,12 +18,13 @@ import com.mzukic.superhero.databinding.FragmentSearchBinding
 import com.mzukic.superhero.ui.base.BaseFragment
 import com.mzukic.superhero.util.hide
 import com.mzukic.superhero.util.show
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class SearchFragment : BaseFragment() {
 
     private lateinit var superHeroAdapter: SuperHeroAdapter
-    private val viewModel: SearchViewModel by viewModels()
+    private val viewModel: SearchViewModel by viewModel()
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!

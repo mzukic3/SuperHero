@@ -23,7 +23,7 @@ object Versions {
     const val LIFECYCLE = "2.2.0"
     const val TIMBER = "4.7.1"
     const val GLIDE = "4.11.0"
-    const val HILT = "2.33-beta"
+    const val KOIN = "3.0.1"
     const val COROUTINES = "1.4.3"
     const val LEGACY = "1.0.0"
     const val TRUTH = "1.0.1"
@@ -33,7 +33,7 @@ object Versions {
 }
 
 object BuildPluginsVersion {
-    const val AGP = "4.1.0"
+    const val AGP = "4.0.0"
     const val DETEKT = "1.10.0"
     const val KOTLIN = "1.4.32"
     const val KTLINT = "9.2.1"
@@ -46,7 +46,8 @@ object Libraries {
         const val ANDROIDX_CONSTRAINT_LAYOUT =
             "com.android.support.constraint:constraint-layout:${Versions.CONSTRAINT_LAYOUT}"
         const val ANDROIDX_CORE_KTX = "androidx.core:core-ktx:${Versions.CORE_KTX}"
-        const val ANDROIDX_RECYCLER_VIEW = "androidx.recyclerview:recyclerview:${Versions.RECYCLER_VIEW}"
+        const val ANDROIDX_RECYCLER_VIEW =
+            "androidx.recyclerview:recyclerview:${Versions.RECYCLER_VIEW}"
         const val ANDROIDX_VIEWMODEL =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE}"
         const val ANDROIDX_LIVEDATA =
@@ -74,8 +75,10 @@ object Libraries {
     }
 
     object Concurrency {
-        const val COROUTINES      = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}"
-        const val COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES}"
+        const val COROUTINES =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINES}"
+        const val COROUTINES_ANDROID =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINES}"
     }
 
     object Utility {
@@ -85,16 +88,17 @@ object Libraries {
     }
 
     object DI {
-        const val HILT = "com.google.dagger:hilt-android:${Versions.HILT}"
-        const val HILT_COMPILER = "com.google.dagger:hilt-android-compiler:${Versions.HILT}"
-        const val HILT_TESTING = "com.google.dagger:hilt-android-testing:${Versions.HILT}"
+        const val KOIN_CORE = "io.insert-koin:koin-core-ext:${Versions.KOIN}"
+        const val KOIN_ANDROID = "io.insert-koin:koin-android:${Versions.KOIN}"
+        const val KOIN_ANDROID_EXT = "io.insert-koin:koin-android-ext:${Versions.KOIN}"
     }
 
 }
 
 object TestingLib {
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
-    const val KOTLIN_COROUTINES_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${BuildPluginsVersion.KOTLIN}"
+    const val KOTLIN_COROUTINES_TEST =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${BuildPluginsVersion.KOTLIN}"
 }
 
 object AndroidTestingLib {
@@ -102,11 +106,14 @@ object AndroidTestingLib {
     const val ANDROIDX_TEST_RULES = "androidx.test:rules:${Versions.ANDROIDX_TEST}"
     const val ANDROIDX_TEST_RUNNER = "androidx.test:runner:${Versions.ANDROIDX_TEST}"
     const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
-    const val ANDROIDX_JUNIT_TEST_EXT = "androidx.test.ext:junit:${Versions.ANDROIDX_JUNIT_TEST_EXT}"
+    const val ANDROIDX_JUNIT_TEST_EXT =
+        "androidx.test.ext:junit:${Versions.ANDROIDX_JUNIT_TEST_EXT}"
     const val ANDROIDX_TRUTH_EXT = "androidx.test.ext:truth:${Versions.ANDROIDX_TEST}"
     const val TRUTH = "com.google.truth:truth:${Versions.TRUTH}"
     const val ROBOLECTRIC = "org.robolectric:robolectric:${Versions.ROBOLECTRIC}"
     const val MOCKITO_INLINE = "org.mockito:mockito-inline:${Versions.MOCKITO_INLINE}"
-    const val MOCKITO_KOTLIN = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.MOCKITO_KOTLIN}"
-    const val COROUTINES_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}"
+    const val MOCKITO_KOTLIN =
+        "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.MOCKITO_KOTLIN}"
+    const val COROUTINES_TEST =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINES}"
 }

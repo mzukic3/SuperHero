@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mzukic.superhero.R
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class SuperHeroActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

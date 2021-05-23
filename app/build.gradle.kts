@@ -3,7 +3,6 @@ plugins {
     kotlin("android")
     id("kotlin-kapt")
     id("kotlin-android-extensions")
-    id("dagger.hilt.android.plugin")
     id("kotlin-android")
     id("androidx.navigation.safeargs.kotlin")
 }
@@ -34,9 +33,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -58,6 +54,7 @@ android {
 
 dependencies {
     implementation(kotlin("stdlib-jdk7"))
+    implementation (project(":shared"))
 
     // Android libs
     implementation(Libraries.AndroidLibs.ANDROIDX_APPCOMPAT)
@@ -89,9 +86,9 @@ dependencies {
     implementation(Libraries.Networking.OKHTTP_URLCONNECTION)
 
     // Hilt
-    implementation(Libraries.DI.HILT)
-    kapt(Libraries.DI.HILT_COMPILER)
-    kaptAndroidTest(Libraries.DI.HILT_COMPILER)
+    implementation(Libraries.DI.KOIN_CORE)
+    implementation(Libraries.DI.KOIN_ANDROID)
+    implementation(Libraries.DI.KOIN_ANDROID_EXT)
 
     // Util
     implementation(Libraries.Utility.TIMBER)
@@ -121,7 +118,6 @@ dependencies {
     androidTestImplementation(AndroidTestingLib.ANDROIDX_TRUTH_EXT)
     androidTestImplementation(AndroidTestingLib.MOCKITO_INLINE)
     androidTestImplementation(AndroidTestingLib.MOCKITO_KOTLIN)
-    androidTestImplementation(Libraries.DI.HILT_TESTING)
     androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.9.0")
     androidTestImplementation("com.jakewharton.espresso:okhttp3-idling-resource:1.0.0")
 

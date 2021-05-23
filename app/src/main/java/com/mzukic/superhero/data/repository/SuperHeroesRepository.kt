@@ -11,8 +11,7 @@ import java.lang.Exception
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class SuperHeroesRepository @Inject constructor(private val apiService: SuperHeroApiService) {
+class SuperHeroesRepository constructor(private val apiService: SuperHeroApiService) {
 
     suspend fun searchHeroes(heroName: String): Either<Exception, List<SuperHero>> {
         try {
