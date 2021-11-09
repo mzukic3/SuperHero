@@ -8,9 +8,9 @@ import com.mzukic.superhero.data.model.SuperHero
 import com.mzukic.superhero.data.repository.SuperHeroesRepository
 import com.mzukic.superhero.exception.NoConnectionException
 import com.mzukic.superhero.util.Either
-import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import kotlinx.coroutines.withContext
 
 class SearchViewModel
 constructor(
@@ -25,23 +25,25 @@ constructor(
 
     fun searchHeroes(heroName: String) {
         _isLoading.value = true
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val result = superHeroesRepository.searchHeroes(heroName)
-            _isLoading.value = false
-            when (result) {
-                is Either.Success -> {
-                    result.data.let { heroes ->
-                        if (heroes.isEmpty()) {
-                            _searchSuperHeroResult.value = SearchSuperHeroResult.NoHeroesFound
-                        } else {
-                            _searchSuperHeroResult.value = SearchSuperHeroResult.Success(heroes)
+            withContext(Dispatchers.Main) {
+                _isLoading.value = false
+                when (result) {
+                    is Either.Success -> {
+                        result.data.let { heroes ->
+                            if (heroes.isEmpty()) {
+                                _searchSuperHeroResult.value = SearchSuperHeroResult.NoHeroesFound
+                            } else {
+                                _searchSuperHeroResult.value = SearchSuperHeroResult.Success(heroes)
+                            }
                         }
                     }
-                }
-                is Either.Exception -> {
-                    _searchSuperHeroResult.value = when (result.exception) {
-                        is NoConnectionException -> SearchSuperHeroResult.NoConnectionError
-                        else -> SearchSuperHeroResult.EndpointFailedError
+                    is Either.Exception -> {
+                        _searchSuperHeroResult.value = when (result.exception) {
+                            is NoConnectionException -> SearchSuperHeroResult.NoConnectionError
+                            else -> SearchSuperHeroResult.EndpointFailedError
+                        }
                     }
                 }
             }

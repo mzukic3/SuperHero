@@ -29,6 +29,9 @@ android {
         testInstrumentationRunner = "com.mzukic.superhero.HiltTestRunner"
         buildConfigField("String", "API_KEY", getApiKey())
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
